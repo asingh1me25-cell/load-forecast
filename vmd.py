@@ -43,8 +43,9 @@ plt.rcParams['figure.figsize'] = (15, 10)
 
 def load_dataset(uploaded_file):
     return pd.read_excel(uploaded_file)
-
-# Create/rename timestamp column
+    
+df = pd.DataFrame()  # initialize empty dataframe to avoid NameError
+#create/ rename timestamp column
 df['timestamp'] = pd.to_datetime(df['datetime'])
 df = df.sort_values('timestamp').reset_index(drop=True)
 

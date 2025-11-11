@@ -133,7 +133,17 @@ if __name__ == "__main__":
 #axes[2].grid(True, alpha=0.3)
 
 #plt.tight_layout()
-plt.savefig('/content/gdrive/My Drive/01_timeseries_analysis.png', dpi=300, bbox_inches='tight')
+#plt.savefig('/content/gdrive/My Drive/01_timeseries_analysis.png', dpi=300, bbox_inches='tight')
+import os
+
+# ✅ Create a safe path to save inside your app directory
+save_path = os.path.join(os.getcwd(), '01_timeseries_analysis.png')
+
+# ✅ Save figure safely
+plt.savefig(save_path, dpi=300, bbox_inches='tight')
+
+print(f"✅ Plot saved at: {save_path}")
+
 plt.show()
 
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))

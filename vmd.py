@@ -73,7 +73,7 @@ def load_dataset(uploaded_file):
 
 
 # Rename National demand to 'Load' for easier processing
-df['Load'] = df['National Hourly Demand']
+#df['Load'] = df['National Hourly Demand']
 
 print("Columns in dataset:")
 print(df.columns.tolist())

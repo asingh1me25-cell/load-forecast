@@ -17,6 +17,18 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 import pandas as pd
+def load_dataset(uploaded_file=None):
+    """
+    Reads dataset from uploaded file (used by Streamlit app).
+    """
+    if uploaded_file is not None:
+        df = pd.read_excel(uploaded_file)
+        print("✅ Dataset loaded successfully!")
+        return df
+    else:
+        print("⚠️ No file uploaded yet.")
+        return None
+
 import numpy as np
 #import matplotlib.pyplot as plt
 #import seaborn as sns

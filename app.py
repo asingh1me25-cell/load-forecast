@@ -1,7 +1,25 @@
 import streamlit as st
 import pandas as pd
-from vmd import *
-from copy_of_spm_project_1 import *
+import importlib.util
+import os
+
+# ---------------------------
+# Import local files manually
+# ---------------------------
+
+# Import vmd.py
+spec_vmd = importlib.util.spec_from_file_location("vmd", os.path.join(os.path.dirname(__file__), "vmd.py"))
+vmd = importlib.util.module_from_spec(spec_vmd)
+spec_vmd.loader.exec_module(vmd)
+
+# Import copy_of_spm_project_1.py
+spec_spm = importlib.util.spec_from_file_location("spm", os.path.join(os.path.dirname(__file__), "copy_of_spm_project 1.py"))
+spm = importlib.util.module_from_spec(spec_spm)
+spec_spm.loader.exec_module(spm)
+
+# ---------------------------
+# Streamlit UI
+# ---------------------------
 
 st.set_page_config(page_title="Load Forecasting Dashboard", layout="wide")
 st.title("⚡ Load Forecasting with VMD + ML Models")
@@ -15,9 +33,8 @@ if uploaded is not None:
     if st.button("Run VMD Preprocessing"):
         st.info("Running VMD pipeline ...")
         try:
-            # Try to run your VMD logic from vmd.py
-            if 'run_vmd_pipeline' in globals():
-                result_df = run_vmd_pipeline(df)
+            if hasattr(vmd, 'run_vmd_pipeline'):
+                result_df = vmd.run_vmd_pipeline(df)
             else:
                 result_df = df
             st.success("✅ VMD completed!")
@@ -28,9 +45,8 @@ if uploaded is not None:
     if st.button("Train ML Models"):
         st.info("Training models, please wait ⏳")
         try:
-            # Try to run your ML model training from copy_of_spm_project 1.py
-            if 'train_all_models' in globals():
-                result = train_all_models(df)
+            if hasattr(spm, 'train_all_models'):
+                result = spm.train_all_models(df)
             else:
                 result = "Model training completed!"
             st.success("✅ Training completed!")
@@ -40,3 +56,6 @@ if uploaded is not None:
 
 else:
     st.warning("⚠ Please upload your dataset first.")
+
+              
+

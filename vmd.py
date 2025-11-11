@@ -205,7 +205,29 @@ print(f"✅ Plot saved at: {save_path}")
 
 plt.show()
 # ✅ Automatically detect any datetime-like column
+plt.show()
+
+# ✅ Auto-detect or manually assign datetime column
+print("🧩 Columns in uploaded dataset:", df.columns.tolist())
+
 datetime_col = None
+for col in df.columns:
+    if any(x in col.lower() for x in ['date', 'time', 'period', 'timestamp']):
+        datetime_col = col
+        break
+
+if datetime_col:
+    print(f"🕒 Detected datetime column: {datetime_col}")
+    df['timestamp'] = pd.to_datetime(df[datetime_col], errors='coerce')
+    df['hour'] = df['timestamp'].dt.hour
+    df['day_of_week'] = df['timestamp'].dt.day_name()
+    df['month'] = df['timestamp'].dt.month
+    df['date'] = df['timestamp'].dt.date
+    df['is_weekend'] = df['timestamp'].dt.dayofweek.isin([5, 6]).astype(int)
+else:
+    print("⚠️ No datetime-like column found! Please manually set it.")
+    df['timestamp'] = pd.to_datetime('today')
+
 # ✅ Auto-detect datetime column safely
 datetime_col = None
 for col in df.columns:

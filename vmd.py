@@ -2075,7 +2075,8 @@ plt.show()
 
 """transformer"""
 
-!pip install pytorch-lightning torch einops --quiet
+import subprocess; subprocess.run(["pip", "install", "pytorch-lightning", "torch", "einops", "--quiet"])
+
 
 import pandas as pd
 import numpy as np

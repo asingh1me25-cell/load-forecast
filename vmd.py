@@ -43,24 +43,33 @@ plt.rcParams['figure.figsize'] = (15, 10)
 
 def load_dataset(uploaded_file):
     # Step 1: Read Excel into DataFrame
+  def load_dataset(uploaded_file):
+    # Step 1: Read Excel file
     df = pd.read_excel(uploaded_file)
 
-    # Step 2: Try to detect which column is the date/time
+    # Step 2: Identify date/time column dynamically
     date_col = None
     for col in df.columns:
         if 'date' in col.lower() or 'time' in col.lower():
             date_col = col
             break
 
-    # Step 3: If found, create timestamp column
+    # Step 3: Convert to datetime and sort
     if date_col:
         df['timestamp'] = pd.to_datetime(df[date_col])
         df = df.sort_values('timestamp').reset_index(drop=True)
     else:
-        print("⚠️ No datetime column found in dataset. Please upload a file with a date/time column.")
+        print("⚠️ No datetime column found. Please upload a file with a date/time column.")
 
-    # Step 4: Return processed df
+    # Step 4: Rename column safely (only if it exists)
+    if 'National Hourly Demand' in df.columns:
+        df['Load'] = df['National Hourly Demand']
+    else:
+        print("⚠️ Column 'National Hourly Demand' not found in dataset.")
+
+    # Step 5: Return the clean dataframe
     return df
+
 
 
 # Rename National demand to 'Load' for easier processing

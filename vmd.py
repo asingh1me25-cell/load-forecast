@@ -118,11 +118,11 @@ regions = ['National Hourly Demand', 'Northen Region Hourly Demand',
 #axes[1].set_title('Load for Last 7 Days (168 hours)', fontsize=14, fontweight='bold')
 #axes[1].set_xlabel('Date')
 if __name__ == "__main__":
-     import matplotlib.pyplot as plt
-
+    import matplotlib.pyplot as plt
+    
     fig, axes = plt.subplots(3, 1, figsize=(14, 10))
-axes[1].set_ylabel('Load (MW)')
-axes[1].grid(True, alpha=0.3)
+    axes[1].set_ylabel('Load (MW)')
+    axes[1].grid(True, alpha=0.3)
 
 # Last 24 hours
 #last_24 = df.tail(24)

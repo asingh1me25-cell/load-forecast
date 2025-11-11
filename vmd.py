@@ -150,13 +150,16 @@ plt.show()
 if __name__ == "__main__":
     print("✅ Running vmd.py directly for testing plots")
 
-    # Dummy dataframe if df doesn’t exist yet
-    try:
-        df
-    except NameError:
-        import pandas as pd
-        df = pd.DataFrame({'Load': [10, 20, 30, 40, 50]})
-        print("⚠️ No dataset found — using sample data for testing.")
+   
+    # Dummy dataframe if df doesn't exist yet
+try:
+    df  # just checking if 'df' exists
+except NameError:
+    import pandas as pd
+    df = pd.DataFrame({'Load': [10, 20, 30, 40, 50]})
+    print("⚠️ No dataset found — using sample data for testing.")
+
+  
 
     import matplotlib.pyplot as plt
     import os

@@ -742,7 +742,8 @@ print(f"Test set: {len(X_test)} samples")
 print(f"Train date range: {df_processed['timestamp'].iloc[0]} to {df_processed['timestamp'].iloc[train_size]}")
 print(f"Test date range: {df_processed['timestamp'].iloc[train_size]} to {df_processed['timestamp'].iloc[-1]}")
 
-!pip install xgboost tensorflow -q
+import subprocess; subprocess.run(["pip", "install", "xgboost", "tensorflow", "-q"])
+
 
 print("XGBoost and TensorFlow installed!")
 

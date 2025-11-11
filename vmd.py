@@ -372,7 +372,11 @@ axes[1, 1].set_ylabel('Residual (MW)')
 axes[1, 1].grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('/content/gdrive/My Drive/04_acf_trend_analysis.png', dpi=300, bbox_inches='tight')
+import os
+save_path = os.path.join(os.getcwd(), '04_acf_trend_analysis.png')
+plt.savefig(save_path, dpi=300, bbox_inches='tight')
+print(f"✅ Plot saved at: {save_path}")
+
 plt.show()
 
 z_scores = np.abs(stats.zscore(df['Load']))

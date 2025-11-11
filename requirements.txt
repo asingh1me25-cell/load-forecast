@@ -1,0 +1,13 @@
+streamlit
+pandas
+numpy
+matplotlib
+scikit-learn
+xgboost
+tensorflow
+torch
+pytorch-lightning
+einops
+PyEMD
+vmdpy
+seaborn

@@ -637,7 +637,8 @@ print(f"\nProcessed data shape: {df_processed.shape}")
 print(f"\nFirst 5 rows of processed data:")
 print(df_processed[['timestamp', 'Load', 'Load_scaled', 'Load_lag_1', 'Load_lag_24', 'sin_hour', 'cos_hour']].head())
 
-!pip install PyEMD vmdpy -q
+import subprocess; subprocess.run(["pip", "install", "PyEMD", "vmdpy", "-q"])
+
 
 print("VMD library installed successfully!")
 

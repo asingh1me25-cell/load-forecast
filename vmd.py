@@ -871,7 +871,11 @@ for i in range(K):
 axes[-1].set_xlabel('Time (hours)')
 
 plt.tight_layout()
-plt.savefig('/content/gdrive/My Drive/07_vmd_decomposition.png', dpi=300, bbox_inches='tight')
+import os
+save_path = os.path.join(os.getcwd(), '07_vmd_decomposition.png')
+plt.savefig(save_path, dpi=300, bbox_inches='tight')
+print(f"✅ Plot saved successfully at: {save_path}")
+
 plt.show()
 
 print("IMF visualization saved!")

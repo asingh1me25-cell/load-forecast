@@ -483,7 +483,11 @@ except NameError:
     ax.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('/content/gdrive/My Drive/06_regional_comparison.png', dpi=300, bbox_inches='tight')
+import os
+save_path = os.path.join(os.getcwd(), '06_regional_comparison.png')
+plt.savefig(save_path, dpi=300, bbox_inches='tight')
+print(f"✅ Plot saved successfully at: {save_path}")
+
 plt.show()
 
 print("\n" + "="*80)

@@ -146,27 +146,47 @@ print(f"✅ Plot saved at: {save_path}")
 
 plt.show()
 
-fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+# Run the plotting part only if executed directly, not during import
+if __name__ == "__main__":
+    print("✅ Running vmd.py directly for testing plots")
 
-# Histogram
-axes[0, 0].hist(df['Load'], bins=50, color='skyblue', edgecolor='black', alpha=0.7)
-axes[0, 0].set_title('Histogram of National Demand', fontsize=12, fontweight='bold')
-axes[0, 0].set_xlabel('Load (MW)')
-axes[0, 0].set_ylabel('Frequency')
-axes[0, 0].axvline(df['Load'].mean(), color='red', linestyle='--', linewidth=2, label=f'Mean: {df["Load"].mean():.2f}')
-axes[0, 0].axvline(df['Load'].median(), color='green', linestyle='--', linewidth=2, label=f'Median: {df["Load"].median():.2f}')
-axes[0, 0].legend()
+    # Dummy dataframe if df doesn’t exist yet
+    try:
+        df
+    except NameError:
+        import pandas as pd
+        df = pd.DataFrame({'Load': [10, 20, 30, 40, 50]})
+        print("⚠️ No dataset found — using sample data for testing.")
 
-# Box plot
-axes[0, 1].boxplot(df['Load'], vert=True)
-axes[0, 1].set_title('Box Plot of Load', fontsize=12, fontweight='bold')
-axes[0, 1].set_ylabel('Load (MW)')
-axes[0, 1].grid(True, alpha=0.3)
+    import matplotlib.pyplot as plt
+    import os
+    from scipy import stats
 
-# Q-Q plot
-stats.probplot(df['Load'], dist="norm", plot=axes[1, 0])
-axes[1, 0].set_title('Q-Q Plot (Normality Check)', fontsize=12, fontweight='bold')
-axes[1, 0].grid(True, alpha=0.3)
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+
+    # Histogram
+    axes[0, 0].hist(df['Load'], bins=50, color='skyblue', edgecolor='black', alpha=0.7)
+    axes[0, 0].set_title('Histogram of National Demand', fontsize=12, fontweight='bold')
+    axes[0, 0].set_xlabel('Load (MW)')
+    axes[0, 0].set_ylabel('Frequency')
+
+    # Box plot
+    axes[0, 1].boxplot(df['Load'], vert=True)
+    axes[0, 1].set_title('Box Plot of Load', fontsize=12, fontweight='bold')
+    axes[0, 1].set_ylabel('Load (MW)')
+
+    # Q-Q plot
+    stats.probplot(df['Load'], dist='norm', plot=axes[1, 0])
+    axes[1, 0].set_title('Q-Q Plot (Normality Check)', fontsize=12, fontweight='bold')
+
+    plt.tight_layout()
+
+    # Save safely
+    save_path = os.path.join(os.getcwd(), 'load_analysis_plots.png')
+    plt.savefig(save_path, dpi=300, bbox_inches='tight')
+    plt.close(fig)
+
+    print(f"✅ Plot saved successfully at: {save_path}")
 
 # KDE
 df['Load'].plot(kind='density', ax=axes[1, 1], color='purple', linewidth=2)

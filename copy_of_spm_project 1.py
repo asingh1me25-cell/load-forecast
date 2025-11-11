@@ -578,7 +578,9 @@ plt.show()
 
 """VMD-KGBoost-LSTM"""
 
-!pip install vmdpy
+import os
+os.system("pip install vmdpy")
+
 
 from vmdpy import VMD
 

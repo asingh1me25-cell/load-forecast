@@ -156,7 +156,8 @@ try:
     df  # just checking if 'df' exists
 except NameError:
     import pandas as pd
-    df = pd.DataFrame({'Load': [10, 20, 30, 40, 50]})
+    df = pd.DataFrame({'Load': np.random.randint(100, 500, size=200)})
+
     print("⚠️ No dataset found — using sample data for testing.")
 
   

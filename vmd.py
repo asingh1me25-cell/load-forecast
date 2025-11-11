@@ -42,20 +42,25 @@ sns.set_style("whitegrid")
 plt.rcParams['figure.figsize'] = (15, 10)
 
 def load_dataset(uploaded_file):
-    return pd.read_excel(uploaded_file)
-    
-date_col = None
-for col in df.columns:
-    if 'date' in col.lower() or 'time' in col.lower():
-        date_col = col
-        break
+    # Step 1: Read Excel into DataFrame
+    df = pd.read_excel(uploaded_file)
 
-if date_col:
-    df['timestamp'] = pd.to_datetime(df[date_col])
-    df = df.sort_values('timestamp').reset_index(drop=True)
-else:
-    print("⚠️ No datetime column found in dataset. Please upload a file with a date/time column.")
+    # Step 2: Try to detect which column is the date/time
+    date_col = None
+    for col in df.columns:
+        if 'date' in col.lower() or 'time' in col.lower():
+            date_col = col
+            break
 
+    # Step 3: If found, create timestamp column
+    if date_col:
+        df['timestamp'] = pd.to_datetime(df[date_col])
+        df = df.sort_values('timestamp').reset_index(drop=True)
+    else:
+        print("⚠️ No datetime column found in dataset. Please upload a file with a date/time column.")
+
+    # Step 4: Return processed df
+    return df
 
 
 # Rename National demand to 'Load' for easier processing

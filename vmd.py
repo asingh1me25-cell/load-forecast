@@ -325,7 +325,8 @@ from statsmodels.graphics.tsaplots import plot_acf
 fig, axes = plt.subplots(2, 2, figsize=(16, 10))
 
 # ACF plot - FIXED syntax
-plot_acf(df['Load'], lags=168, ax=axes[0, 0], color='blue')
+plot_acf(df['Load'], lags=min(40, len(df)-1), ax=axes[0, 0], color='blue')
+
 axes[0, 0].set_title('Autocorrelation Function (ACF) - 168 Lags', fontsize=12, fontweight='bold')
 axes[0, 0].set_xlabel('Lag (hours)')
 axes[0, 0].grid(True, alpha=0.3)

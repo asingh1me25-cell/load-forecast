@@ -437,7 +437,11 @@ axes[1, 1].text(0.05, 0.95, summary_text, transform=axes[1, 1].transAxes,
 axes[1, 1].axis('off')
 
 plt.tight_layout()
-plt.savefig('/content/gdrive/My Drive/05_outliers_analysis.png', dpi=300, bbox_inches='tight')
+import os
+save_path = os.path.join(os.getcwd(), '05_outliers_analysis.png')
+plt.savefig(save_path, dpi=300, bbox_inches='tight')
+print(f"✅ Plot saved at: {save_path}")
+
 plt.show()
 
 fig, axes = plt.subplots(2, 2, figsize=(16, 10))

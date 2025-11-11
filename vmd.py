@@ -44,10 +44,19 @@ plt.rcParams['figure.figsize'] = (15, 10)
 def load_dataset(uploaded_file):
     return pd.read_excel(uploaded_file)
     
-df = pd.DataFrame()  # initialize empty dataframe to avoid NameError
-#create/ rename timestamp column
-df['timestamp'] = pd.to_datetime(df['datetime'])
-df = df.sort_values('timestamp').reset_index(drop=True)
+date_col = None
+for col in df.columns:
+    if 'date' in col.lower() or 'time' in col.lower():
+        date_col = col
+        break
+
+if date_col:
+    df['timestamp'] = pd.to_datetime(df[date_col])
+    df = df.sort_values('timestamp').reset_index(drop=True)
+else:
+    print("⚠️ No datetime column found in dataset. Please upload a file with a date/time column.")
+
+
 
 # Rename National demand to 'Load' for easier processing
 df['Load'] = df['National Hourly Demand']

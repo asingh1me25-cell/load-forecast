@@ -75,28 +75,28 @@ def load_dataset(uploaded_file):
 # Rename National demand to 'Load' for easier processing
 #df['Load'] = df['National Hourly Demand']
 
-print("Columns in dataset:")
-print(df.columns.tolist())
-print("\nShape:", df.shape)
-print("\nFirst 5 rows:")
-print(df.head())
+#print("Columns in dataset:")
+#print(df.columns.tolist())
+#print("\nShape:", df.shape)
+#print("\nFirst 5 rows:")
+#print(df.head())
 
-print("="*80)
-print("DATASET OVERVIEW")
-print("="*80)
-print(f"\nShape: {df.shape}")
-print(f"Date Range: {df['timestamp'].min()} to {df['timestamp'].max()}")
-print(f"Duration: {(df['timestamp'].max() - df['timestamp'].min()).days} days")
-print(f"\nMissing Values:\n{df.isnull().sum()}")
+#print("="*80)
+#print("DATASET OVERVIEW")
+#print("="*80)
+#print(f"\nShape: {df.shape}")
+#print(f"Date Range: {df['timestamp'].min()} to {df['timestamp'].max()}")
+#print(f"Duration: {(df['timestamp'].max() - df['timestamp'].min()).days} days")
+#print(f"\nMissing Values:\n{df.isnull().sum()}")
 
-print(f"\n\nNational Load Statistics:")
-print(df['Load'].describe())
-print(f"\nSkewness: {df['Load'].skew():.4f}")
-print(f"Kurtosis: {df['Load'].kurtosis():.4f}")
+#print(f"\n\nNational Load Statistics:")
+#print(df['Load'].describe())
+#print(f"\nSkewness: {df['Load'].skew():.4f}")
+#print(f"Kurtosis: {df['Load'].kurtosis():.4f}")
 
-print("\n" + "="*80)
-print("REGIONAL DEMAND STATISTICS")
-print("="*80)
+#print("\n" + "="*80)
+#print("REGIONAL DEMAND STATISTICS")
+#print("="*80)
 
 regions = ['National Hourly Demand', 'Northen Region Hourly Demand',
            'Western Region Hourly Demand', 'Eastern Region Hourly Demand',

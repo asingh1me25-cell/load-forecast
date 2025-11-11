@@ -445,16 +445,32 @@ print(f"✅ Plot saved at: {save_path}")
 plt.show()
 
 fig, axes = plt.subplots(2, 2, figsize=(16, 10))
+regions = [
+    'National Hourly Demand',
+    'Northern Region Hourly Demand',
+    'Western Region Hourly Demand',
+    'Eastern Region Hourly Demand'
+]
 
-regions = ['National Hourly Demand', 'Northen Region Hourly Demand',
-           'Western Region Hourly Demand', 'Eastern Region Hourly Demand']
+# ✅ Automatically fix region names if they differ slightly
+for i, col in enumerate(df.columns):
+    for j, region in enumerate(regions):
+        if region.lower() in col.lower():
+            regions[j] = col  # update to actual name in df
 
+# ✅ Safe plotting loop
 for idx, region in enumerate(regions):
-    ax = axes[idx // 2, idx % 2]
-    ax.plot(df['timestamp'], df[region], color='blue', linewidth=0.8, alpha=0.7)
-    ax.set_title(f'{region}', fontsize=12, fontweight='bold')
-    ax.set_xlabel('Date')
-    ax.set_ylabel('Demand (MW)')
+    if region in df.columns:
+        ax = axes[idx // 2, idx % 2]
+        ax.plot(df['timestamp'], df[region], color='blue', linewidth=0.8, alpha=0.7)
+        ax.set_title(f'{region}', fontsize=12, fontweight='bold')
+        ax.set_xlabel('Date')
+        ax.set_ylabel('Demand (MW)')
+        ax.grid(True, alpha=0.3)
+    else:
+        print(f"⚠️ Skipped missing region: {region}")
+
+
     ax.grid(True, alpha=0.3)
 
 plt.tight_layout()

@@ -470,6 +470,15 @@ for idx, region in enumerate(regions):
     else:
         print(f"⚠️ Skipped missing region: {region}")
 
+# ✅ Safety: Avoid using ax if no region was plotted
+try:
+    plt.tight_layout()
+    plt.savefig('06_regional_comparison.png', dpi=300, bbox_inches='tight')
+    plt.show()
+except NameError:
+    print("⚠️ No valid regions were found to plot.")
+
+
 
     ax.grid(True, alpha=0.3)
 

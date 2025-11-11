@@ -17,6 +17,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 import pandas as pd
+from scipy.signal import savgol_filter
+
 def load_dataset(uploaded_file=None):
     """
     Reads dataset from uploaded file (used by Streamlit app).

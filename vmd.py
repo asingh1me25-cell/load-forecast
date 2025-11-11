@@ -18,8 +18,8 @@ import pandas as pd
 import numpy as np
 #import matplotlib.pyplot as plt
 #import seaborn as sns
-from scipy import stats
-from scipy.signal import savgol_filter
+#from scipy import stats
+#from scipy.signal import savgol_filter
 from pandas.plotting import autocorrelation_plot
 import warnings
 warnings.filterwarnings('ignore')

@@ -198,7 +198,11 @@ axes[1, 1].set_xlabel('Load (MW)')
 axes[1, 1].grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('/content/gdrive/My Drive/02_distribution_analysis.png', dpi=300, bbox_inches='tight')
+import os
+save_path = os.path.join(os.getcwd(), '02_distribution_analysis.png')
+plt.savefig(save_path, dpi=300, bbox_inches='tight')
+print(f"✅ Plot saved at: {save_path}")
+
 plt.show()
 
 df['hour'] = df['timestamp'].dt.hour

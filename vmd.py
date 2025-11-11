@@ -651,7 +651,14 @@ axes[1, 0].grid(True, alpha=0.3, axis='y')
 
 # Heatmap: Hour vs Day of Week
 pivot_data = df.pivot_table(values='Load', index='hour', columns='day_of_week', aggfunc='mean')
-pivot_data = pivot_data[day_order]
+day_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+# Filter only existing days in the DataFrame
+existing_days = [day for day in day_order if day in pivot_data.columns]
+if existing_days:
+    pivot_data = pivot_data[existing_days]
+else:
+    print("⚠️ No matching weekday columns found in pivot_data. Using default order.")
+
 sns.heatmap(pivot_data, cmap='YlOrRd', ax=axes[1, 1], cbar_kws={'label': 'Load (MW)'})
 axes[1, 1].set_title('Load Heatmap: Hour vs Day of Week', fontsize=12, fontweight='bold')
 axes[1, 1].set_xlabel('Day of Week')

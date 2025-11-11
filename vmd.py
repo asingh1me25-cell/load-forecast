@@ -313,7 +313,11 @@ sns.heatmap(pivot_data, cmap='YlOrRd', ax=axes[1, 1], cbar_kws={'label': 'Load (
 axes[1, 1].set_title('Load Heatmap: Hour vs Day of Week', fontsize=12, fontweight='bold')
 
 plt.tight_layout()
-plt.savefig('/content/gdrive/My Drive/03_hourly_daily_patterns.png', dpi=300, bbox_inches='tight')
+import os
+save_path = os.path.join(os.getcwd(), '03_hourly_daily_patterns.png')
+plt.savefig(save_path, dpi=300, bbox_inches='tight')
+print(f"✅ Plot saved successfully at: {save_path}")
+
 plt.show()
 
 from statsmodels.graphics.tsaplots import plot_acf

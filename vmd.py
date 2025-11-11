@@ -204,9 +204,22 @@ plt.savefig(save_path, dpi=300, bbox_inches='tight')
 print(f"✅ Plot saved at: {save_path}")
 
 plt.show()
+# ✅ Automatically detect any datetime-like column
+datetime_col = None
+for col in df.columns:
+    if 'date' in col.lower() or 'time' in col.lower():
+        datetime_col = col
+        break
 
-df['hour'] = df['timestamp'].dt.hour
-df['day_of_week'] = df['timestamp'].dt.day_name()
+if datetime_col:
+    df['timestamp'] = pd.to_datetime(df[datetime_col])
+    df['hour'] = df['timestamp'].dt.hour
+    df['day_of_week'] = df['timestamp'].dt.day_name()
+    print(f"🕒 Using '{datetime_col}' column as timestamp.")
+else:
+    print("⚠️ No datetime-like column found! Skipping time-based plots.")
+
+
 df['month'] = df['timestamp'].dt.month
 df['date'] = df['timestamp'].dt.date
 df['is_weekend'] = df['timestamp'].dt.dayofweek.isin([5, 6]).astype(int)

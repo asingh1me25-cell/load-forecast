@@ -78,39 +78,33 @@ regions = ['National Hourly Demand', 'Northen Region Hourly Demand',
            'Western Region Hourly Demand', 'Eastern Region Hourly Demand',
            'Southern Region Hourly Demand', 'North-Eastern Region Hourly Demand']
 
-for region in regions:
-    print(f"\n{region}:")
-    print(f"  Mean: {df[region].mean():.2f} MW")
-    print(f"  Std: {df[region].std():.2f} MW")
-    print(f"  Min: {df[region].min():.2f} MW")
-    print(f"  Max: {df[region].max():.2f} MW")
 
-fig, axes = plt.subplots(3, 1, figsize=(16, 12))
+
 
 # Full time series
-axes[0].plot(df['timestamp'], df['Load'], color='blue', linewidth=1, alpha=0.7)
-axes[0].set_title('National Hourly Demand - Full Time Series', fontsize=14, fontweight='bold')
-axes[0].set_xlabel('Date')
-axes[0].set_ylabel('Load (MW)')
-axes[0].grid(True, alpha=0.3)
+#axes[0].plot(df['timestamp'], df['Load'], color='blue', linewidth=1, alpha=0.7)
+#axes[0].set_title('National Hourly Demand - Full Time Series', fontsize=14, fontweight='bold')
+#axes[0].set_xlabel('Date')
+#axes[0].set_ylabel('Load (MW)')
+#axes[0].grid(True, alpha=0.3)
 
 # Last 168 hours (1 week)
-last_168 = df.tail(168)
-axes[1].plot(last_168['timestamp'], last_168['Load'], color='green', linewidth=1.5, marker='o', markersize=2)
-axes[1].set_title('Load for Last 7 Days (168 hours)', fontsize=14, fontweight='bold')
-axes[1].set_xlabel('Date')
+#last_168 = df.tail(168)
+#axes[1].plot(last_168['timestamp'], last_168['Load'], color='green', linewidth=1.5, marker='o', markersize=2)
+#axes[1].set_title('Load for Last 7 Days (168 hours)', fontsize=14, fontweight='bold')
+#axes[1].set_xlabel('Date')
 axes[1].set_ylabel('Load (MW)')
 axes[1].grid(True, alpha=0.3)
 
 # Last 24 hours
-last_24 = df.tail(24)
-axes[2].plot(last_24['timestamp'], last_24['Load'], color='red', linewidth=2, marker='o', markersize=4)
-axes[2].set_title('Load for Last 24 Hours', fontsize=14, fontweight='bold')
-axes[2].set_xlabel('Time')
-axes[2].set_ylabel('Load (MW)')
-axes[2].grid(True, alpha=0.3)
+#last_24 = df.tail(24)
+#axes[2].plot(last_24['timestamp'], last_24['Load'], color='red', linewidth=2, marker='o', markersize=4)
+#axes[2].set_title('Load for Last 24 Hours', fontsize=14, fontweight='bold')
+#axes[2].set_xlabel('Time')
+#axes[2].set_ylabel('Load (MW)')
+#axes[2].grid(True, alpha=0.3)
 
-plt.tight_layout()
+#plt.tight_layout()
 plt.savefig('/content/gdrive/My Drive/01_timeseries_analysis.png', dpi=300, bbox_inches='tight')
 plt.show()
 

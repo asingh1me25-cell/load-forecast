@@ -876,9 +876,6 @@ save_path = os.path.join(os.getcwd(), '07_vmd_decomposition.png')
 plt.savefig(save_path, dpi=300, bbox_inches='tight')
 print(f"✅ Plot saved successfully at: {save_path}")
 
-plt.show()
-
-print("IMF visualization saved!")
 
 # Select features for the model
 feature_cols = [f'IMF_{i+1}' for i in range(K)] + [
